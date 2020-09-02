@@ -3,11 +3,20 @@ package com.xxx.entity;
 import java.util.Date;
 
 public class User {
+
     private int id;
     private String account;
     private String password;
     private String name;
     private Date create_time;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

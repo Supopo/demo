@@ -21,4 +21,8 @@
     <select id="queryByAccount" resultType="com.xxx.entity.User">
         SELECT * FROM `user` WHERE account = #{account}
     </select>
+
+    <select id="queryById" resultType="com.xxx.entity.User">
+        SELECT * FROM `user` WHERE id = #{id}
+    </select>
 </mapper>

@@ -25,4 +25,10 @@ public class UserServiceImpl implements UserService {
         return userList;
     }
 
+    @Override
+    public List<User> queryById(int id) {
+        List<User> userList = userMapper.queryById(id);
+        return userList;
+    }
+
 }

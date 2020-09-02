@@ -21,7 +21,7 @@ public class UserController {
     public Response register(@RequestBody User user) {
         //1.判断账户、密码是否为空
         if (user == null) {
-            return new Response(0, "注册信息不能为空");
+            return new Response(0, "请求数据不能为空");
         }
         if (user.getAccount() == null || user.getAccount().equals("")) {
             return new Response(0, "账号不能为空");
@@ -41,6 +41,33 @@ public class UserController {
             } else {
                 return new Response(0, "注册失败");
             }
+        }
+    }
+
+    //登录
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public Response login(@RequestBody User user) {
+        //1.判断账户、密码是否为空
+        if (user == null) {
+            return new Response(0, "请求数据不能为空");
+        }
+        if (user.getAccount() == null || user.getAccount().equals("")) {
+            return new Response(0, "账号不能为空");
+        }
+        if (user.getPassword() == null || user.getPassword().equals("")) {
+            return new Response(0, "密码不能为空");
+        }
+        //2.判断是否存在
+        List<User> users = service.queryByAccount(user.getAccount());
+        if (users == null || users.size() == 0) {
+            return new Response(0, "账号不存在");
+        } else {
+            User userInfo = users.get(0);
+            //3.判断密码是否一致
+            if (userInfo.getPassword().equals(user.getPassword())) {
+                return new Response<User>(1, "登录成功", userInfo);
+            }
+            return new Response(0, "登录失败，密码错误");
         }
     }
 }

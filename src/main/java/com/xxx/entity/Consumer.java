@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Consumer {
     private int id;
+    private int parent_id;
     private int status;
     private String name;
     private String mobile;
@@ -11,6 +12,22 @@ public class Consumer {
     private String remark;
     private Date create_time;
 
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getParent_id() {
+        return parent_id;
+    }
+
+    public void setParent_id(int parent_id) {
+        this.parent_id = parent_id;
+    }
 
     public String getName() {
         return name;

@@ -13,13 +13,8 @@ public class ConsumerServiceImpl implements ConsumerService {
     private ConsumerMapper consumerMapper;
 
     @Override
-    public int addConsumer() {
-        Consumer user = new Consumer();
-        user.setName("阿凡提2");
-        user.setMobile("18812345678");
-        user.setAddress("新疆买买提");
-        user.setRemark("十头羊");
-        int result = consumerMapper.addConsumer(user);
+    public int addConsumer(Consumer consumer) {
+        int result = consumerMapper.addConsumer(consumer);
         return result;
     }
 }

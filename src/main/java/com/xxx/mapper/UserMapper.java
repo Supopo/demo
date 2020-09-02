@@ -13,4 +13,5 @@ public interface UserMapper {
     int addUser(User user);
 
     List<User> queryByAccount(String account);
+    List<User> queryById(int id);
 }
