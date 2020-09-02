@@ -4,13 +4,10 @@ import java.util.Date;
 
 public class User {
     private int id;
-    private int status;
+    private String account;
+    private String password;
     private String name;
-    private String mobile;
-    private String address;
-    private String remark;
     private Date create_time;
-
 
     public String getName() {
         return name;
@@ -20,36 +17,20 @@ public class User {
         this.name = name;
     }
 
-    public String getMobile() {
-        return mobile;
+    public String getPassword() {
+        return password;
     }
 
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getAddress() {
-        return address;
+    public String getAccount() {
+        return account;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
+    public void setAccount(String account) {
+        this.account = account;
     }
 
     public Date getCreate_time() {
@@ -60,13 +41,4 @@ public class User {
         this.create_time = create_time;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", mobile='" + mobile + '\'' +
-                ", address='" + address + '\'' +
-                ", remark='" + remark + '\'' +
-                '}';
-    }
 }

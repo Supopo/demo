@@ -4,27 +4,43 @@ import com.xxx.entity.Response;
 import com.xxx.entity.User;
 import com.xxx.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class UserController {
     @Autowired
     private UserService service;
 
-    @RequestMapping(value = "/getUserInfo", method = RequestMethod.GET)
-    public String getUserItem() {
-        User user = service.getUserInfo();
-        return user.toString();
-    }
-
-    @RequestMapping(value = "/addUser", method = RequestMethod.GET)
-    public Response addUser() {
-        int result = service.addUser();
-        Response res = new Response();
-        res.setMsg(result > 0 ? "添加成功" : "添加失败");
-        res.setStatus(result > 0 ? 1 : 0);
-        return res;
+    //注册
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public Response register(@RequestBody User user) {
+        //1.判断账户、密码是否为空
+        if (user == null) {
+            return new Response(0, "注册信息不能为空");
+        }
+        if (user.getAccount() == null || user.getAccount().equals("")) {
+            return new Response(0, "账号不能为空");
+        }
+        if (user.getPassword() == null || user.getPassword().equals("")) {
+            return new Response(0, "密码不能为空");
+        }
+        //2.判断是否存在
+        List<User> users = service.queryByAccount(user.getAccount());
+        if (users != null && users.size() > 0) {
+            return new Response(0, "注册失败，账号已存在");
+        } else {
+            int count = service.addUser(user);
+            if (count > 0) {
+                //3.没有重复用户名，注册成功
+                return new Response(1, "注册成功");
+            } else {
+                return new Response(0, "注册失败");
+            }
+        }
     }
 }

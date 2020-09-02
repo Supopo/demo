@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxx.mapper.ConsumerMapper">
+    <resultMap id="BaseResultMap" type="com.xxx.entity.Consumer">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+        <result column="address" jdbcType="VARCHAR" property="address" />
+        <result column="remark" jdbcType="VARCHAR" property="remark" />
+        <result column="status" jdbcType="INTEGER" property="status" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="create_time" />
+    </resultMap>
+
+  <sql id="Base_List">
+    name, mobile, address,remark
+  </sql>
+
+    <insert id="addConsumer" parameterType="com.xxx.entity.Consumer">
+        insert into consumer (<include refid="Base_List" />)
+        values (#{name},#{mobile},#{address},#{remark})
+    </insert>
+</mapper>

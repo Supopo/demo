@@ -4,6 +4,14 @@ public class Response {
     private String msg;
     private int status;
 
+    public Response() {
+    }
+
+    public Response(int status, String msg) {
+        this.status = status;
+        this.msg = msg;
+    }
+
     public String getMsg() {
         return msg;
     }
