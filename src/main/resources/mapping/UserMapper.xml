@@ -11,7 +11,7 @@
 
     <sql id="Base_List">
     account, password, name
-  </sql>
+    </sql>
 
     <insert id="addUser" parameterType="com.xxx.entity.User">
         insert into user (<include refid="Base_List"/>)
@@ -19,10 +19,10 @@
     </insert>
 
     <select id="queryByAccount" resultType="com.xxx.entity.User">
-        SELECT * FROM `user` WHERE account = #{account}
+        select * from user where account = #{account}
     </select>
 
     <select id="queryById" resultType="com.xxx.entity.User">
-        SELECT * FROM `user` WHERE user_id = #{user_id}
+        select * from user where user_id = #{user_id}
     </select>
 </mapper>
