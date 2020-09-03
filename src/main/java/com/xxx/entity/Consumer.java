@@ -3,8 +3,8 @@ package com.xxx.entity;
 import java.util.Date;
 
 public class Consumer {
-    private int id;
-    private int parent_id;
+    private int consumer_id;
+    private int user_id;
     private int status;
     private String name;
     private String mobile;
@@ -13,20 +13,20 @@ public class Consumer {
     private Date create_time;
 
 
-    public int getId() {
-        return id;
+    public int getConsumer_id() {
+        return consumer_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setConsumer_id(int consumer_id) {
+        this.consumer_id = consumer_id;
     }
 
-    public int getParent_id() {
-        return parent_id;
+    public int getUser_id() {
+        return user_id;
     }
 
-    public void setParent_id(int parent_id) {
-        this.parent_id = parent_id;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
     public String getName() {

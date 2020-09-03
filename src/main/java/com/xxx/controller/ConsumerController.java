@@ -28,7 +28,7 @@ public class ConsumerController {
             return new Response(0, "请求数据不能为空");
         }
         //判断关联账号是否存在
-        List<User> users = userService.queryById(consumer.getParent_id());
+        List<User> users = userService.queryById(consumer.getUser_id());
         if (users == null || users.size() == 0) {
             return new Response(-1, "账户校验失败，请重新登录");
         }
@@ -42,7 +42,7 @@ public class ConsumerController {
 
     @RequestMapping(value = "/getConsumerList", method = RequestMethod.POST)
     public Response getConsumerList(int user_id) {
-        List<Consumer> consumers = service.queryById(user_id);
+        List<Consumer> consumers = service.queryByUserId(user_id);
         return new Response<List<Consumer>>(1, "获取成功", consumers);
     }
 }

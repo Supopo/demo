@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxx.mapper.OrderMapper">
+    <resultMap id="BaseResultMap" type="com.xxx.entity.Order">
+        <id column="order_id" jdbcType="INTEGER" property="order_id"/>
+        <result column="consumer_id" jdbcType="INTEGER" property="consumer_id"/>
+        <result column="order_date" jdbcType="VARCHAR" property="order_date"/>
+        <result column="order_product" jdbcType="VARCHAR" property="order_product"/>
+        <result column="order_amount" jdbcType="INTEGER" property="order_amount"/>
+        <result column="order_price" jdbcType="INTEGER" property="order_price"/>
+        <result column="order_ticket" jdbcType="VARCHAR" property="order_ticket"/>
+        <result column="order_remark" jdbcType="VARCHAR" property="order_remark"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="create_time"/>
+    </resultMap>
+
+    <sql id="Base_List">
+    consumer_id, order_date, order_product,order_amount,order_price,order_ticket,order_remark
+    </sql>
+
+    <!-- 需要查询返回的字段-->
+    <sql id="Base_Column_List">
+      order_id,consumer_id, order_date, order_product,order_amount,order_price,order_ticket,order_remark
+    </sql>
+
+    <insert id="addOrder" parameterType="com.xxx.entity.Order">
+        insert into c_order (<include refid="Base_List"/>)
+        values
+        (#{consumer_id},#{order_date},#{order_product},#{order_amount},#{order_price},#{order_ticket},#{order_remark})
+    </insert>
+
+    <!--根据consumer_id查询订单列表-->
+    <select id="queryById" resultType="com.xxx.entity.Order">
+        select * from c_order where consumer_id = #{consumer_id} and status = 0
+    </select>
+
+    <!--模糊查询-->
+    <select id="queryAll" resultType="com.xxx.entity.Order" resultMap="BaseResultMap">
+        select * from c_order
+        <where>
+            <if test="consumer_id != null and consumer_id != 0">
+                and consumer_id = #{consumer_id}
+            </if>
+            <if test="order_date != null and order_date != ''">
+                and order_date like concat('%',#{order_date},'%')
+            </if>
+            <if test="order_product != null and order_product != ''">
+                and order_product like concat('%',#{order_product},'%')
+            </if>
+
+        </where>
+    </select>
+</mapper>
