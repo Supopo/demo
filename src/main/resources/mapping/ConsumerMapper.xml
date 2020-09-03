@@ -20,4 +20,9 @@
         insert into consumer (<include refid="Base_List"/>)
         values (#{name},#{mobile},#{address},#{remark},#{parent_id})
     </insert>
+
+    <!--根据parent_id查询客户列表-->
+    <select id="queryById" resultType="com.xxx.entity.Consumer">
+        SELECT * FROM `consumer` WHERE parent_id = #{parent_id}
+    </select>
 </mapper>

@@ -39,4 +39,10 @@ public class ConsumerController {
         res.setStatus(result > 0 ? 1 : 0);
         return res;
     }
+
+    @RequestMapping(value = "/getConsumerList", method = RequestMethod.POST)
+    public Response getConsumerList(int user_id) {
+        List<Consumer> consumers = service.queryById(user_id);
+        return new Response<List<Consumer>>(1, "获取成功", consumers);
+    }
 }

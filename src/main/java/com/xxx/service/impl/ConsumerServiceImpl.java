@@ -7,6 +7,8 @@ import com.xxx.service.ConsumerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ConsumerServiceImpl implements ConsumerService {
     @Autowired
@@ -16,5 +18,11 @@ public class ConsumerServiceImpl implements ConsumerService {
     public int addConsumer(Consumer consumer) {
         int result = consumerMapper.addConsumer(consumer);
         return result;
+    }
+
+    @Override
+    public List<Consumer> queryById(int id) {
+        List<Consumer> consumerList = consumerMapper.queryById(id);
+        return consumerList;
     }
 }
