@@ -21,12 +21,32 @@
         values (#{name},#{mobile},#{address},#{remark},#{user_id})
     </insert>
 
+    <!--修改用户信息-->
+    <update id="updateConsumer" parameterType="com.xxx.entity.Consumer">
+		update consumer
+		set
+			name = #{name,jdbcType=VARCHAR},
+			mobile = #{mobile,jdbcType=VARCHAR},
+			address = #{address,jdbcType=VARCHAR},
+			remark = #{remark,jdbcType=VARCHAR}
+		where consumer_id = #{consumer_id}
+  </update>
+
+    <!--删除用户-->
+    <update id="delConsumer" parameterType="com.xxx.entity.Consumer">
+		update consumer
+		set
+			status = 1
+		where consumer_id = #{consumer_id} and user_id = #{user_id}
+  </update>
+
     <!--根据user_id查询客户列表-->
     <select id="queryByUserId" resultType="com.xxx.entity.Consumer">
-        SELECT * FROM `consumer` WHERE user_id = #{user_id}
+        select * from consumer where user_id = #{user_id} and status = 0
     </select>
 
+    <!--查询某个客户-->
     <select id="queryById" resultType="com.xxx.entity.Consumer">
-        SELECT * FROM `consumer` WHERE consumer_id = #{consumer_id}
+        select * from consumer where consumer_id = #{consumer_id} and status = 0
     </select>
 </mapper>

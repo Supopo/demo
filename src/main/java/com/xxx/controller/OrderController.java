@@ -46,6 +46,7 @@ public class OrderController {
         return new Response<List<Order>>(1, "获取成功", orders);
     }
 
+    //根据条件查询订单
     @RequestMapping(value = "/queryAllOrder", method = RequestMethod.POST)
     public Response queryAllOrder(@RequestBody Order order) {
         List<Order> orders = service.queryAllOrder(order);

@@ -21,6 +21,18 @@ public class ConsumerServiceImpl implements ConsumerService {
     }
 
     @Override
+    public int updateConsumer(Consumer consumer) {
+        int result = consumerMapper.updateConsumer(consumer);
+        return result;
+    }
+
+    @Override
+    public int delConsumer(int user_id, int consumer_id) {
+        int result = consumerMapper.delConsumer(user_id, consumer_id);
+        return result;
+    }
+
+    @Override
     public List<Consumer> queryByUserId(int id) {
         List<Consumer> consumerList = consumerMapper.queryByUserId(id);
         return consumerList;

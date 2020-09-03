@@ -11,6 +11,8 @@ import java.util.List;
 @Repository
 public interface ConsumerMapper {
     int addConsumer(Consumer user);
+    int updateConsumer(Consumer consumer);
+    int delConsumer(int user_id, int consumer_id);
     List<Consumer> queryByUserId(int id);
     List<Consumer> queryById(int id);
 }
