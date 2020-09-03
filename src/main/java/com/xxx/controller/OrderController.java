@@ -48,7 +48,7 @@ public class OrderController {
 
     @RequestMapping(value = "/queryAllOrder", method = RequestMethod.POST)
     public Response queryAllOrder(@RequestBody Order order) {
-        List<Order> orders = service.queryAllOrder(order.getConsumer_id(), order.getOrder_date(), order.getOrder_product());
+        List<Order> orders = service.queryAllOrder(order);
         return new Response<List<Order>>(1, "获取成功", orders);
     }
 }

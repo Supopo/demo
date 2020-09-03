@@ -11,5 +11,5 @@ import java.util.List;
 public interface OrderMapper {
     int addOrder(Order order);
     List<Order> queryById(int id);
-    List<Order> queryAll(int consumer_id, String order_date, String order_product);
+    List<Order> queryAll(Order order);
 }

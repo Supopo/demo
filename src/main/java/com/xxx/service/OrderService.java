@@ -9,5 +9,5 @@ public interface OrderService {
 
     List<Order> queryById(int id);
 
-    List<Order> queryAllOrder(int consumer_id, String order_date, String order_product);
+    List<Order> queryAllOrder(Order order);
 }

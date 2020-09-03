@@ -26,8 +26,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> queryAllOrder(int consumer_id, String order_date, String order_product) {
-        List<Order> orderList = orderMapper.queryAll(consumer_id, order_date, order_product);
+    public List<Order> queryAllOrder(Order order) {
+        List<Order> orderList = orderMapper.queryAll(order);
         return orderList;
     }
 }
